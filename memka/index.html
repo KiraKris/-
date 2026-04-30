@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Я ещё держусь</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -23,14 +22,9 @@
     }
 
     img {
-      max-width: 250px;
+      max-width: 300px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-    }
-
-    #qrcode {
-      margin-top: 20px;
     }
 
     .btn {
@@ -49,28 +43,37 @@
       background-color: #ff3b3b;
       transform: scale(1.05);
     }
+
+    .message {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Я ещё держусь</h1>
+  <h1>Когда жизнь давит...</h1>
 
-  <img src="mem.png" alt="мем">
+  <img src="mem.png" alt="Я ещё держусь">
 
-  <button class="btn" onclick="generateQR()">Сгенерировать QR</button>
+  <button class="btn" onclick="showMessage()">Нажми, если тоже держишься</button>
 
-  <canvas id="qrcode"></canvas>
+  <div class="message" id="msg"></div>
 
   <script>
-    function generateQR() {
-      const text = "Я ещё держусь 😅";
-      const canvas = document.getElementById('qrcode');
+    function showMessage() {
+      const messages = [
+        "Держимся вместе 😅",
+        "Ещё чуть-чуть и отпуск... наверное",
+        "Система на грани, но работает",
+        "Не сдаёмся!",
+        "Кот одобряет твою стойкость 🐱"
+      ];
 
-      QRCode.toCanvas(canvas, text, {
-        width: 200
-      }, function (error) {
-        if (error) console.error(error);
-      });
+      const random = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById('msg').innerText = random;
     }
   </script>
 
