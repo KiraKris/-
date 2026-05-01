@@ -1,1 +1,363 @@
-q
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Сборка А132-V1.0 | Импульсный диск</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #1a1e2a 0%, #0f1219 100%);
+            font-family: 'Segoe UI', 'Roboto', 'Orbitron', system-ui, -apple-system, 'Inter', sans-serif;
+            padding: 2rem 1.5rem;
+            color: #eef5ff;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* карточка-герой */
+        .hero-card {
+            background: rgba(18, 22, 35, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 3rem;
+            padding: 2rem 2rem 2rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(0, 255, 255, 0.25);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #00c8c8;
+            color: #0a0c15;
+            font-weight: bold;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            font-family: monospace;
+            box-shadow: 0 0 6px #0ff;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #7ee0ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            line-height: 1.45;
+            color: #cddcff;
+            border-left: 4px solid #0ff;
+            padding-left: 1.3rem;
+            margin: 1.5rem 0;
+        }
+
+        .spec-list {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.8rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+            border: 1px solid #2a3348;
+        }
+
+        .spec-item {
+            background: #0b0e1a;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            color: #b4f0ff;
+        }
+
+        .output-box {
+            background: #00000055;
+            border-radius: 2rem;
+            padding: 1rem 1.8rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-family: 'Orbitron', monospace;
+            display: inline-block;
+            width: auto;
+            border: 1px dashed #2effb0;
+        }
+
+        .output-box span {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffd966;
+            background: #1e1a0f;
+            padding: 0.2rem 0.9rem;
+            border-radius: 3rem;
+        }
+
+        /* галерея */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .photo-card {
+            background: #111522cc;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 1.2rem 1.2rem 1rem 1.2rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #2d3448;
+            flex: 1;
+            min-width: 220px;
+            max-width: 320px;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px black;
+            border-color: #0ff8;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 1.4rem;
+            background: #010101;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .photo-name {
+            font-family: 'Fira Code', monospace;
+            font-weight: 500;
+            color: #aad0ff;
+            background: #00000066;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* звуковая кнопка */
+        .sound-section {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .play-btn {
+            background: radial-gradient(circle at 30% 10%, #1f2b3c, #0a0e17);
+            border: none;
+            padding: 1.2rem 2.8rem;
+            border-radius: 80px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f0fcff;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #002a3e, 0 10px 25px rgba(0,0,0,0.3);
+            transition: 0.05s linear;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            font-family: monospace;
+            letter-spacing: 1px;
+            border: 1px solid #60ffff80;
+        }
+
+        .play-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #001f2c;
+        }
+
+        .play-icon {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 2px cyan);
+        }
+
+        /* дополнительная секция с объяснением A и V */
+        .tech-note {
+            background: #0e1120cc;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 1rem;
+            border-left: 5px solid #ffaa33;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.75rem;
+            color: #5f6d96;
+        }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.9rem;
+            }
+            .description {
+                font-size: 1rem;
+            }
+            .play-btn {
+                padding: 0.9rem 1.8rem;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero-card">
+        <div class="badge">⚡ prototype series ⚡</div>
+        <h1>А132-V1.0 · Импульсный модуль</h1>
+        <div class="description">
+            Данная сборка <strong>А132-V1.0</strong>: в ней находится плата, которая берёт энергию от
+            <strong>небольшой батарейки</strong>. Также выходят 2 провода:<br>
+            • 1‑й провод — <strong>запускатель (кнопка)</strong><br>
+            • 2‑й провод — <strong>сам импульсный диск со звуком</strong><br>
+            Всё это заряжается от провода с входом <strong>USB Micro</strong>.
+        </div>
+
+        <div class="spec-list">
+            <div class="spec-item">🔋 Питание: батарейка (3V–4.2V)</div>
+            <div class="spec-item">⚡ Импульсный диск: активный звук</div>
+            <div class="spec-item">🔘 Пусковая кнопка (провод #1)</div>
+            <div class="spec-item">🎵 Динамик / пьезо (провод #2)</div>
+            <div class="spec-item">🔌 Зарядка: USB Micro (5V)</div>
+        </div>
+
+        <div class="output-box">
+            ⚡ <strong>Надпись на коробке (выход импульсного диска):</strong>   
+            <span>A ~ {1.6} &nbsp; V ~ {25-35} примерно (A и V)</span>
+        </div>
+        <div class="tech-note">
+            📐 *Диапазон выходных параметров: ток ≈1.6А, напряжение в импульсе 25–35 вольт (переменная составляющая)*
+        </div>
+    </div>
+
+    <!-- ГАЛЕРЕЯ СНИМКОВ: k1.png, k2.png, k3.png -->
+    <div style="margin-top: 1rem;">
+        <div style="text-align: center; margin-bottom: 1rem; font-size: 1.2rem; letter-spacing: 1px;">📸 Фото сборки & платы</div>
+        <div class="gallery">
+            <div class="photo-card">
+                <!-- имя файла k1.png -->
+                <img src="k1.png" alt="Фото сборки - плата и батарейка" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1a1f2e/4c9aff?text=k1.png+%5Bзагрузить+файл%5D'; this.style.objectFit='contain';">
+                <div class="photo-name">📁 k1.png</div>
+                <div style="font-size:0.7rem; margin-top: 0.4rem;">вид на плату и батарейный отсек</div>
+            </div>
+            <div class="photo-card">
+                <img src="k2.png" alt="Провода: кнопка и импульсный диск" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1a1f2e/4c9aff?text=k2.png+%5Bфайл+не+найден%5D'; this.style.objectFit='contain';">
+                <div class="photo-name">📁 k2.png</div>
+                <div style="font-size:0.7rem; margin-top: 0.4rem;">два выхода — кнопка и звуковой диск</div>
+            </div>
+            <div class="photo-card">
+                <img src="k3.png" alt="Интерфейс USB Micro / коробка" onerror="this.onerror=null; this.src='https://placehold.co/400x400/1a1f2e/4c9aff?text=k3.png+%5Bизображение%5D'; this.style.objectFit='contain';">
+                <div class="photo-name">📁 k3.png</div>
+                <div style="font-size:0.7rem; margin-top: 0.4rem;">разъём MicroUSB и маркировка A~{1.6} V~25-35</div>
+            </div>
+        </div>
+        <p style="font-size: 0.75rem; text-align: center; margin-top: 0rem; opacity: 0.7;">※ изображения должны находиться в одной папке со страницей: <strong>k1.png , k2.png , k3.png</strong> (если файлы отсутствуют, показаны плейсхолдеры)</p>
+    </div>
+
+    <!-- КНОПКА ВОСПРОИЗВЕСТИ ЗВУК: звук называется kk1.mp3 -->
+    <div class="sound-section">
+        <button class="play-btn" id="playSoundBtn">
+            <span class="play-icon">▶</span> Воспроизвести звук импульса
+        </button>
+    </div>
+
+    <!-- скрытый аудиоэлемент -->
+    <audio id="soundAudio" preload="auto" style="display: none;">
+        <source src="kk1.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <div style="font-size: 0.85rem; text-align: center; background: #05070e60; border-radius: 2rem; padding: 0.7rem; max-width: 500px; margin: 0 auto;">
+        🎵 звуковой файл: <strong>kk1.mp3</strong> (расположите рядом с HTML)
+    </div>
+
+    <footer>
+        Сборка А132-V1.0 | Импульсный драйвер | Зарядка MicroUSB | Диапазон выхода A~1.6 / V~25-35
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // получаем элементы
+        const playBtn = document.getElementById('playSoundBtn');
+        const audioEl = document.getElementById('soundAudio');
+
+        // функция для безопасного воспроизведения с обработкой ошибок (файл может отсутствовать)
+        function playSound() {
+            if (!audioEl) return;
+            // перезапуск звука, если он уже играет (сбросить к началу)
+            audioEl.pause();
+            audioEl.currentTime = 0;
+            // пробуем проиграть
+            const playPromise = audioEl.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.warn("Ошибка воспроизведения звука: ", error);
+                    // если файл не найден или политика автоплея - показываем понятное сообщение
+                    let userMessage = "⚠️ Не удалось воспроизвести kk1.mp3.\n";
+                    if (error.name === 'NotSupportedError') {
+                        userMessage += "Формат не поддерживается или файл повреждён.";
+                    } else if (error.name === 'NotFoundError' || error.code === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED) {
+                        userMessage += "Файл kk1.mp3 не найден в текущей директории.\nУбедитесь, что звук присутствует рядом со страницей.";
+                    } else {
+                        userMessage += "Возможно, файл отсутствует или браузер блокирует автовоспроизведение. Нажмите на кнопку повторно.";
+                    }
+                    alert(userMessage);
+                });
+            }
+        }
+
+        // привязываем кнопку
+        if (playBtn) {
+            playBtn.addEventListener('click', playSound);
+        }
+
+        // дополнительная подгрузка подсказки: если аудио не может загрузиться - покажем в консоль, но кнопка остаётся активной
+        if (audioEl) {
+            audioEl.addEventListener('error', function(e) {
+                console.error("Аудио элемент ошибка: не удалось загрузить kk1.mp3");
+                // не спамим алертами, просто в консоль
+            });
+            // чтобы помочь в отладке, но без лишних алертов при загрузке
+        }
+    })();
+</script>
+
+<!-- примечание: для корректной работы картинок и звука нужно разместить файлы:
+     k1.png, k2.png, k3.png и kk1.mp3 в той же папке, что и данный HTML документ.
+     При отсутствии - fallback заглушки с текстом. -->
+</body>
+</html>
